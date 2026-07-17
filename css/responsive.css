@@ -6,6 +6,7 @@
   body {
     padding: 16px 12px;
   }
+
   header {
     flex-direction: column;
     align-items: stretch;
@@ -36,19 +37,38 @@
     order: 2;
   }
   .top-controls button {
-    flex: 1 1 auto; 
+    flex: 1 1 auto;
     font-size: 13px;
     padding: 8px 12px;
     white-space: nowrap;
     order: 3;
   }
-
   .top-controls button:first-of-type {
     margin-right: 4px;
   }
   .top-controls button:last-of-type {
     margin-left: 4px;
   }
+
+  .meta-left .count {
+    font-size: 18px;
+  }
+  .meta-left .count strong {
+    font-size: 20px;
+  }
+  #timerDisplay {
+    font-size: 16px;
+    padding: 2px 10px;
+  }
+  .meta-left .label,
+  .meta-right .label {
+    font-size: 11px;
+  }
+  .meta {
+    padding: 6px 12px;
+    gap: 4px 12px;
+  }
+
   #startBtn {
     font-size: 12px;
     padding: 6px 10px;
@@ -99,6 +119,21 @@
   #giveUpBtn {
     font-size: 11px;
     padding: 5px 8px;
+  }
+
+  .meta-left .count {
+    font-size: 16px;
+  }
+  .meta-left .count strong {
+    font-size: 18px;
+  }
+  #timerDisplay {
+    font-size: 14px;
+    padding: 2px 8px;
+  }
+  .meta-left .label,
+  .meta-right .label {
+    font-size: 10px;
   }
 
   .quiz-table {
