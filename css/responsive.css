@@ -4,148 +4,223 @@
 
 @media (max-width: 768px) {
   body {
-    padding: 16px 12px;
+    padding: 12px 10px;
   }
-
   header {
     flex-direction: column;
     align-items: stretch;
-    gap: 10px;
+    gap: 6px;
+    transition: none;
+  }
+  header.scrolled h1,
+  header.scrolled .top-controls select {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    transition:
+      visibility 0.2s,
+      opacity 0.2s,
+      height 0.2s;
   }
 
   .top-controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-left: 0;
-    width: 100%;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    align-items: center !important;
   }
   .top-controls select {
-    flex: 1 1 100%;
-    min-width: 0;
-    width: 100%;
-    font-size: 14px;
-    padding: 8px 12px;
-    order: 1;
+    display: block !important;
+    flex: 1 1 100% !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    font-size: 14px !important;
+    padding: 8px 12px !important;
+    order: 1 !important;
   }
   .top-controls input {
-    flex: 1 1 100%;
-    min-width: 0;
-    width: 100%;
-    font-size: 14px;
-    padding: 8px 10px;
-    order: 2;
+    flex: 1 1 0 !important;
+    min-width: 40px !important;
+    max-width: 72% !important;
+    font-size: 13px !important;
+    padding: 6px 8px !important;
+    order: 2 !important;
   }
-  .top-controls button {
-    flex: 1 1 auto;
-    font-size: 13px;
-    padding: 8px 12px;
-    white-space: nowrap;
-    order: 3;
-  }
-  .top-controls button:first-of-type {
-    margin-right: 4px;
-  }
-  .top-controls button:last-of-type {
-    margin-left: 4px;
+  .top-controls #startBtn,
+  .top-controls #giveUpBtn {
+    flex: 0 1 auto !important;
+    font-size: 11px !important;
+    padding: 6px 8px !important;
+    white-space: nowrap !important;
+    order: 3 !important;
   }
 
-  .meta-left .count {
-    font-size: 18px;
+  .meta-center {
+    display: none !important;
   }
-  .meta-left .count strong {
-    font-size: 20px;
+  .meta {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    align-items: center !important;
+    gap: 0 8px !important;
+    padding: 6px 10px !important;
+    background: var(--surface0) !important;
+    border-radius: 12px !important;
+    border: 1px solid var(--border) !important;
+    margin: 4px 0 !important;
   }
-  #timerDisplay {
-    font-size: 16px;
-    padding: 2px 10px;
+  .meta-left {
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 4px !important;
+    justify-content: flex-start !important;
+    white-space: nowrap !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+  .meta-right {
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 4px !important;
+    justify-content: flex-end !important;
+    white-space: nowrap !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
   }
   .meta-left .label,
   .meta-right .label {
-    font-size: 11px;
+    font-size: 10px !important;
+    color: var(--text-muted) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    white-space: nowrap !important;
   }
-  .meta {
-    padding: 6px 12px;
-    gap: 4px 12px;
+  .meta-left .count {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+    white-space: nowrap !important;
+  }
+  .meta-left .count strong {
+    font-size: 20px !important;
+    color: var(--green) !important;
+  }
+  #timerDisplay {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    padding: 2px 10px !important;
+    background: var(--surface1) !important;
+    border-radius: 20px !important;
+    border: 1px solid var(--border) !important;
+    white-space: nowrap !important;
+    display: inline-block !important;
   }
 
-  #startBtn {
-    font-size: 12px;
-    padding: 6px 10px;
+  #cols {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overflow-y: visible !important;
+    padding: 4px 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    scrollbar-width: thin !important;
   }
-  #giveUpBtn {
-    font-size: 12px;
-    padding: 6px 10px;
+  #cols::-webkit-scrollbar {
+    height: 4px !important;
+  }
+  #cols::-webkit-scrollbar-thumb {
+    background: var(--surface2) !important;
+    border-radius: 4px !important;
   }
 
   .quiz-table {
-    min-width: 500px;
-    font-size: 12px;
+    display: grid !important;
+    grid-template-columns: repeat(
+      var(--cols),
+      calc((100vw - 40px) / 4 - 2px)
+    ) !important;
+    gap: 2px !important;
+    width: fit-content !important;
+    min-width: fit-content !important;
+    max-width: none !important;
+    font-size: 12px !important;
+    border: none !important;
+    background: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
+
   .table-cell {
-    padding: 6px 8px;
-    font-size: 12px;
-    min-height: 32px;
+    padding: 6px 8px !important;
+    font-size: 12px !important;
+    min-height: 32px !important;
+    border-radius: 4px !important;
+    word-break: break-word !important;
+    background: var(--bg-card) !important;
+  }
+  .table-cell.header-cell {
+    font-size: 12px !important;
+    padding: 8px 6px !important;
+    min-height: 36px !important;
   }
   .table-cell.hidden {
-    font-size: 14px;
+    font-size: 14px !important;
   }
+
   .sticky-bar {
-    padding-bottom: 4px;
-  }
-  .meta {
-    gap: 6px 12px;
-    font-size: 13px;
+    padding-bottom: 4px !important;
   }
 }
 
 @media (max-width: 480px) {
   .top-controls select {
-    font-size: 13px;
-    padding: 6px 10px;
+    font-size: 13px !important;
+    padding: 6px 10px !important;
   }
   .top-controls input {
-    font-size: 13px;
-    padding: 6px 8px;
+    font-size: 12px !important;
+    padding: 5px 6px !important;
+    min-width: 30px !important;
+    max-width: 65% !important;
   }
-  .top-controls button {
-    font-size: 12px;
-    padding: 6px 8px;
-  }
-  #startBtn {
-    font-size: 11px;
-    padding: 5px 8px;
-  }
-  #giveUpBtn {
-    font-size: 11px;
-    padding: 5px 8px;
+  .top-controls #startBtn,
+  .top-controls #giveUpBtn {
+    font-size: 10px !important;
+    padding: 5px 6px !important;
   }
 
   .meta-left .count {
-    font-size: 16px;
+    font-size: 16px !important;
   }
   .meta-left .count strong {
-    font-size: 18px;
+    font-size: 18px !important;
   }
   #timerDisplay {
-    font-size: 14px;
-    padding: 2px 8px;
-  }
-  .meta-left .label,
-  .meta-right .label {
-    font-size: 10px;
+    font-size: 14px !important;
+    padding: 2px 8px !important;
   }
 
   .quiz-table {
-    min-width: 400px;
-    font-size: 11px;
+    grid-template-columns: repeat(
+      var(--cols),
+      calc((100vw - 32px) / 4 - 2px)
+    ) !important;
+    font-size: 11px !important;
   }
   .table-cell {
-    padding: 4px 6px;
-    font-size: 11px;
-    min-height: 28px;
+    padding: 4px 6px !important;
+    font-size: 11px !important;
+    min-height: 28px !important;
   }
-  header h1 {
-    font-size: 18px;
+  .table-cell.header-cell {
+    font-size: 11px !important;
+    padding: 6px 4px !important;
+    min-height: 32px !important;
   }
 }

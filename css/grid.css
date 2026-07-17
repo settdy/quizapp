@@ -54,14 +54,15 @@
   font-size: 20px;
   font-weight: 300;
   letter-spacing: 2px;
+  background: var(--bg-card) !important; 
+  font-size: 0 !important;
 }
 .table-cell.hidden::before {
-  content: "▢";
-  opacity: 0.5;
-  font-size: 22px;
+  content: "" !important ;
+  display: none !important;
 }
 .table-cell.hidden .answer-text {
-  display: none;
+  display: none !important;
 }
 
 .table-cell.matched {
@@ -96,7 +97,6 @@
   }
 }
 
-/* ── missed state (revealed in red, no animation) ── */
 .table-cell.missed {
   color: var(--red);
   background: var(--bg-card);
