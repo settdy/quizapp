@@ -1,6 +1,7 @@
 { "files": [
     "deltarune-complete-ost.json",
     "deltarune-items.json",
-    "extreme-demon.json"
+    "extreme-demon.json",
+    "brawlers.json"
     ]
 }

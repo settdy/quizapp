@@ -1,0 +1,141 @@
+{
+  "id": "brawlers",
+  "title": "All Brawl Stars Brawlers",
+  "columns": [
+    {
+      "title": "Starting",
+      "answers": ["SHELLY"]
+    },
+    {
+      "title": "Rare",
+      "answers": [
+        "COLT",
+        "BULL",
+        "BROCK",
+        "BARLEY",
+        "NITA",
+        "EL PRIMO",
+        "POCO",
+        "ROSA"
+      ]
+    },
+    {
+      "title": "Super Rare",
+      "answers": [
+        "RICO",
+        "JESSIE",
+        "DYNAMIKE",
+        "DARRYL",
+        "PENNY",
+        "TICK",
+        "CARL",
+        "8-BIT",
+        "JACKY",
+        "GUS"
+      ]
+    },
+    {
+      "title": "Epic",
+      "answers": [
+        "BO",
+        "PIPER",
+        "PAM",
+        "FRANK",
+        "BIBI",
+        "BEA",
+        "EMZ",
+        "GALE",
+        "NANI",
+        "COLETTE",
+        "EDGAR",
+        "STU",
+        "BELLE",
+        "GROM",
+        "GRIFF",
+        "ASH",
+        "LOLA",
+        "BONNIE",
+        "SAM",
+        "MANDY",
+        "MAISIE",
+        "HANK",
+        "PEARL",
+        "LARRY & LAWRIE",
+        "ANGELO",
+        "BERRY",
+        "SHADE",
+        "MEEPLE",
+        "TRUNK",
+        "BOLT"
+      ]
+    },
+    {
+      "title": "Mythic",
+      "answers": [
+        "MORTIS",
+        "TARA",
+        "GENE",
+        "MR. P",
+        "MAX",
+        "SPROUT",
+        "LOU",
+        "BYRON",
+        "SQUEAK",
+        "BUZZ",
+        "FANG",
+        "EVE",
+        "JANET",
+        "OTIS",
+        "BUSTER",
+        "GRAY",
+        "R-T",
+        "WILLOW",
+        "DOUG",
+        "CHUCK",
+        "CHARLIE",
+        "MICO",
+        "MELODIE",
+        "LILY",
+        "CLANCY",
+        "MOE",
+        "JUJU",
+        "OLLIE",
+        "LUMI",
+        "FINX",
+        "JAE-YONG",
+        "ALLI",
+        "MINA",
+        "ZIGGY",
+        "GIGI",
+        "GLOWY",
+        "NAJIA",
+        "DAMIAN",
+        "STARR NOVA",
+        "WENDY"
+      ]
+    },
+    {
+      "title": "Legendary",
+      "answers": [
+        "SPIKE",
+        "CROW",
+        "LEON",
+        "SANDY",
+        "SURGE",
+        "AMBER",
+        "MEG",
+        "CHESTER",
+        "CORDELIUS",
+        "KIT",
+        "DRACO",
+        "KENJI",
+        "PIERCE",
+        "NORI"
+      ]
+    },
+    {
+      "title": "Ultra Legendary",
+      "answers": ["KAZE", "SIRIUS"]
+    }
+  ]
+}
