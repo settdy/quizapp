@@ -20,57 +20,43 @@ let totalAnswers = 0;
 let lastMatchedId = null;
 let givenUp = false;
 
-// ---- Helpers ----
-function parseAnswerItem(item, colIdx, rowIdx) {
-    let answer, aliases = [];
-    if (typeof item === 'string') {
-        answer = item;
-    } else if (item && typeof item === 'object' && item.answer) {
-        answer = item.answer;
-        if (Array.isArray(item.aliases)) aliases = item.aliases;
-    } else {
-        console.warn('parseAnswerItem: invalid item at', colIdx, rowIdx, item);
-        return null;
-    }
-    const key = matchKey(answer);
-    // Generate a unique ID: use the normalized key plus column/row to avoid collisions
-    const id = `col-${String(colIdx)}-row-${String(rowIdx)}`;
-    // Fallback: if the ID somehow becomes empty, use the key
-    const finalId = id || key;
-    return { id: finalId, answer, key, aliases };
-}
-
 // ---- Reset ----
 function resetMatchState(quiz) {
     console.log('resetMatchState called with quiz:', quiz.id);
     answerMap = new Map();
     aliasMap = new Map();
 
-    let totalProcessed = 0;
-
     for (let colIdx = 0; colIdx < quiz.columns.length; colIdx++) {
         const col = quiz.columns[colIdx];
-        console.log(`  Column ${colIdx} "${col.title}" has ${col.answers.length} answers`);
         for (let rowIdx = 0; rowIdx < col.answers.length; rowIdx++) {
             const raw = col.answers[rowIdx];
-            totalProcessed++;
-            const parsed = parseAnswerItem(raw, colIdx, rowIdx);
-            if (!parsed) {
-                console.warn(`  Skipped item at col ${colIdx}, row ${rowIdx}:`, raw);
+            let answer = null;
+            let aliases = [];
+
+            // Extract answer and aliases
+            if (typeof raw === 'string') {
+                answer = raw;
+            } else if (raw && typeof raw === 'object') {
+                answer = raw.answer || raw.name || raw.text || raw.value;
+                if (Array.isArray(raw.aliases)) aliases = raw.aliases;
+                if (!answer) {
+                    console.warn('No answer property found for:', raw);
+                    continue;
+                }
+            } else {
                 continue;
             }
-            const { id, answer, key, aliases } = parsed;
-            // Ensure id is a string
-            if (!id) {
-                console.warn('  ID is empty for', answer, '– skipping');
-                continue;
-            }
+
+            // ★ Use the SAME ID format as main.js ★
+            const id = `col-${colIdx}-row-${rowIdx}`;
+            const key = matchKey(answer);
+
             // Store answer info
             answerMap.set(id, { original: answer, columnIndex: colIdx, rowIndex: rowIdx });
-            // Map canonical key to id
-            if (key) {
-                aliasMap.set(key, id);
-            }
+
+            // Map canonical key
+            if (key) aliasMap.set(key, id);
+
             // Map aliases
             for (const alias of aliases) {
                 const aliasKey = matchKey(alias);
@@ -87,50 +73,30 @@ function resetMatchState(quiz) {
     lastMatchedId = null;
     givenUp = false;
 
-    console.log(`resetMatchState: processed ${totalProcessed} items, accepted ${totalAnswers} answers`);
-    console.log('  answerMap keys:', [...answerMap.keys()].slice(0, 5), '...');
-    console.log('  aliasMap keys:', [...aliasMap.keys()].slice(0, 5), '...');
+    console.log(`resetMatchState: accepted ${totalAnswers} answers`);
+    console.log('  sample keys:', [...aliasMap.keys()].slice(0, 10));
 }
 
 function isQuizComplete() {
     return found.size === totalAnswers && totalAnswers > 0;
 }
 
-// ---- Match ----
 function tryMatch(raw) {
     if (!raw || !raw.trim()) return false;
     const key = matchKey(raw);
-    console.log('tryMatch:', raw, '→ key:', key);
-    if (!aliasMap.has(key)) {
-        console.log('  Key not found in aliasMap');
-        return false;
-    }
+    if (!aliasMap.has(key)) return false;
     const id = aliasMap.get(key);
-    console.log('  Matched id:', id);
-    if (found.has(id)) {
-        console.log('  Already found');
-        return false;
-    }
-    if (!remaining.has(id)) {
-        console.log('  Not in remaining');
-        return false;
-    }
+    if (found.has(id) || !remaining.has(id)) return false;
     found.add(id);
     remaining.delete(id);
     lastMatchedId = id;
-    console.log('  ✅ Match successful!');
     return true;
 }
 
-function clearLastMatched() {
-    lastMatchedId = null;
-}
-
-// ---- Give up ----
+function clearLastMatched() { lastMatchedId = null; }
 function setGivenUp(val) { givenUp = val; }
 function isGivenUp() { return givenUp; }
 
-// ---- Expose ----
 window.match = {
     matchKey,
     resetMatchState,

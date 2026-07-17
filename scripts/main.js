@@ -75,7 +75,14 @@ window.main = { getCurrentQuiz };
 
 // ---- Reset quiz state ----
 function resetQuizState() {
-  if (!currentQuiz) return;
+  if (!currentQuiz) {
+    console.warn("resetQuizState: no currentQuiz");
+    return;
+  }
+  console.log(
+    "resetQuizState: calling match.resetMatchState with quiz:",
+    currentQuiz.id,
+  );
   window.match.resetMatchState(currentQuiz);
   window.match.setGivenUp(false);
   renderGrid();
@@ -94,6 +101,12 @@ function renderGrid() {
   }
 
   const state = window.match.getState();
+  console.log(
+    "renderGrid: state.found size =",
+    state.found.size,
+    "total =",
+    state.totalAnswers,
+  );
   const { answerMap, found, lastMatchedId } = state;
   const isGivenUp = window.match.isGivenUp();
 
@@ -182,14 +195,23 @@ function renderGrid() {
 
 // ---- Load quiz ----
 function loadQuiz(quizId) {
+  console.log("loadQuiz called with quizId:", quizId);
   currentQuiz = quizzes.find((q) => q.id === quizId) || quizzes[0] || null;
   if (!currentQuiz) {
+    console.warn("loadQuiz: no quiz found");
     $("cols").innerHTML =
       `<div class="empty-state">No quizzes available.</div>`;
     $("p").textContent = "0 / 0";
     $("progressBar").style.width = "0%";
     return;
   }
+  console.log(
+    "loadQuiz: currentQuiz has",
+    currentQuiz.columns.length,
+    "columns",
+  );
+  // Reset match state
+  console.log("loadQuiz: calling match.resetMatchState");
   window.match.resetMatchState(currentQuiz);
   window.match.setGivenUp(false);
   if (window.timer) window.timer.resetTimer();
@@ -230,76 +252,81 @@ function handleGiveUp() {
 
 // ---- Init ----
 async function init() {
-    try {
-        const manifestRes = await fetch('./quizzes/manifest.json');
-        if (!manifestRes.ok) throw new Error('manifest.json not found');
-        const manifest = await manifestRes.json();
-        const files = manifest.files || [];
+  try {
+    const manifestRes = await fetch("./quizzes/manifest.json");
+    if (!manifestRes.ok) throw new Error("manifest.json not found");
+    const manifest = await manifestRes.json();
+    const files = manifest.files || [];
 
-        const loaded = [];
-        for (const f of files) {
-            try {
-                const res = await fetch('./quizzes/' + f);
-                if (!res.ok) continue;
-                const data = await res.json();
-                if (Array.isArray(data)) loaded.push(...data);
-                else loaded.push(data);
-            } catch (err) {
-                console.error(`Failed to load ${f}:`, err);
-            }
-        }
-
-        console.log('Loaded raw data:', loaded); // 👈 see what we got
-
-        quizzes = loaded
-            .filter(q => q && q.id && Array.isArray(q.columns))
-            .map(q => {
-                console.log('Quiz:', q.id, 'has', q.columns.length, 'columns');
-                q.columns.forEach((c, i) => {
-                    console.log(`  Column ${i} "${c.title}" has ${c.answers.length} answers`);
-                });
-                return {
-                    id: String(q.id),
-                    title: String(q.title || q.id),
-                    columns: q.columns.map(c => ({
-                        title: String(c.title || ''),
-                        color: c.color || null,
-                        answers: c.answers || []
-                    }))
-                };
-            });
-
-        console.log('Processed quizzes:', quizzes);
-
-        const sel = $('q');
-        sel.innerHTML = quizzes.map(q =>
-            `<option value="${escHtml(q.id)}">${escHtml(q.title)}</option>`
-        ).join('');
-
-        if (quizzes.length === 0) {
-            $('cols').innerHTML = `<div class="empty-state">No quizzes found.</div>`;
-            $('p').textContent = '0 / 0';
-            return;
-        }
-
-        loadQuiz(quizzes[0].id);
-        sel.addEventListener('change', () => loadQuiz(sel.value));
-
-        document.getElementById('giveUpBtn').addEventListener('click', handleGiveUp);
-
-        $('i').addEventListener('input', handleInput);
-        $('i').addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                handleInput();
-            }
-        });
-
-    } catch (err) {
-        console.error('Init error:', err);
-        $('cols').innerHTML = `<div class="empty-state">⚠️ ${err.message}</div>`;
-        $('p').textContent = '0 / 0';
+    const loaded = [];
+    for (const f of files) {
+      try {
+        const res = await fetch("./quizzes/" + f);
+        if (!res.ok) continue;
+        const data = await res.json();
+        if (Array.isArray(data)) loaded.push(...data);
+        else loaded.push(data);
+      } catch (err) {
+        console.error(`Failed to load ${f}:`, err);
+      }
     }
+
+    console.log("Loaded raw data:", loaded);
+
+    quizzes = loaded
+      .filter((q) => q && q.id && Array.isArray(q.columns))
+      .map((q) => {
+        console.log("Quiz:", q.id, "has", q.columns.length, "columns");
+        q.columns.forEach((c, i) => {
+          console.log(
+            `  Column ${i} "${c.title}" has ${c.answers.length} answers`,
+          );
+        });
+        return {
+          id: String(q.id),
+          title: String(q.title || q.id),
+          columns: q.columns.map((c) => ({
+            title: String(c.title || ""),
+            color: c.color || null,
+            answers: c.answers || [],
+          })),
+        };
+      });
+
+    console.log("Processed quizzes:", quizzes);
+
+    const sel = $("q");
+    sel.innerHTML = quizzes
+      .map(
+        (q) => `<option value="${escHtml(q.id)}">${escHtml(q.title)}</option>`,
+      )
+      .join("");
+
+    if (quizzes.length === 0) {
+      $("cols").innerHTML = `<div class="empty-state">No quizzes found.</div>`;
+      $("p").textContent = "0 / 0";
+      return;
+    }
+
+    loadQuiz(quizzes[0].id);
+    sel.addEventListener("change", () => loadQuiz(sel.value));
+
+    document
+      .getElementById("giveUpBtn")
+      .addEventListener("click", handleGiveUp);
+
+    $("i").addEventListener("input", handleInput);
+    $("i").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleInput();
+      }
+    });
+  } catch (err) {
+    console.error("Init error:", err);
+    $("cols").innerHTML = `<div class="empty-state">⚠️ ${err.message}</div>`;
+    $("p").textContent = "0 / 0";
+  }
 }
 
 window.main = { ...window.main, getCurrentQuiz: () => currentQuiz };
