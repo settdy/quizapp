@@ -25,7 +25,6 @@ function parseAnswerItem(raw) {
 function getCurrentQuiz() {
   return currentQuiz;
 }
-window.main = { getCurrentQuiz };
 
 function resetQuizState() {
   if (!currentQuiz) {
@@ -39,7 +38,6 @@ function resetQuizState() {
   $("i").disabled = false;
   $("i").focus();
 }
-window.main.resetQuizState = resetQuizState;
 
 function renderGrid() {
   const wrap = $("cols");
@@ -107,7 +105,7 @@ function renderGrid() {
         if (matched || isGivenUp) {
           html += `<span class="answer-text">${escHtml(item.answer)}</span>`;
         } else {
-          html += `<span class="placeholder">▢</span>`;
+          html += `<span class="placeholder"></span>`;
         }
         html += "</div>";
       } else {
@@ -198,28 +196,16 @@ async function init() {
       }
     }
 
-    console.log("Loaded raw data:", loaded);
-
     quizzes = loaded
       .filter((q) => q && q.id && Array.isArray(q.columns))
-      .map((q) => {
-        console.log("Quiz:", q.id, "has", q.columns.length, "columns");
-        q.columns.forEach((c, i) => {
-          console.log(
-            `  Column ${i} "${c.title}" has ${c.answers.length} answers`,
-          );
-        });
-        return {
-          id: String(q.id),
-          title: String(q.title || q.id),
-          columns: q.columns.map((c) => ({
-            title: String(c.title || ""),
-            answers: c.answers || [],
-          })),
-        };
-      });
-
-    console.log("Processed quizzes:", quizzes);
+      .map((q) => ({
+        id: String(q.id),
+        title: String(q.title || q.id),
+        columns: q.columns.map((c) => ({
+          title: String(c.title || ""),
+          answers: c.answers || [],
+        })),
+      }));
 
     const sel = $("q");
     sel.innerHTML = quizzes
@@ -281,6 +267,6 @@ function initScrollHide() {
   window.addEventListener("resize", handleScroll);
 }
 
-window.main = { ...window.main, getCurrentQuiz: () => currentQuiz };
+window.main = { getCurrentQuiz: () => currentQuiz, resetQuizState };
 init();
 initScrollHide();

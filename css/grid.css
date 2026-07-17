@@ -1,10 +1,8 @@
 #cols {
-  margin-top: 0;
   flex: 1;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding: 4px 0;
 }
 
 .quiz-table {
@@ -34,7 +32,6 @@
   text-align: center;
   transition: background 0.2s;
   word-break: break-word;
-  position: relative;
 }
 
 .header-cell {
@@ -50,21 +47,14 @@
 }
 
 .table-cell.hidden {
-  color: var(--overlay0);
-  font-size: 20px;
-  font-weight: 300;
-  letter-spacing: 2px;
-  background: var(--bg-card) !important; 
-  font-size: 0 !important;
+  font-size: 0;
+  color: transparent;
+  background: var(--bg-card);
 }
-.table-cell.hidden::before {
-  content: "" !important ;
-  display: none !important;
-}
+.table-cell.hidden .placeholder,
 .table-cell.hidden .answer-text {
-  display: none !important;
+  display: none;
 }
-
 .table-cell.matched {
   color: var(--text-primary);
   background: var(--bg-card);
@@ -74,14 +64,14 @@
 .table-cell.matched .placeholder {
   display: none;
 }
-.table-cell.matched .answer-text {
+.table-cell.matched .answer-text, 
+.table-cell.missed .placeholder,
+.table-cell.missed .answer-text {
   display: inline;
 }
-
 .table-cell.just-matched {
   animation: matchPop 0.3s ease;
 }
-
 @keyframes matchPop {
   0% {
     transform: scale(0.92);
@@ -96,18 +86,11 @@
     background: var(--bg-card);
   }
 }
-
 .table-cell.missed {
   color: var(--red);
   background: var(--bg-card);
   font-size: 16px;
   font-weight: 500;
-}
-.table-cell.missed .placeholder {
-  display: none;
-}
-.table-cell.missed .answer-text {
-  display: inline;
 }
 
 .table-cell.empty {

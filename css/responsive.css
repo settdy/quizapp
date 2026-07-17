@@ -46,20 +46,18 @@
   .top-controls input {
     flex: 1 1 0 !important;
     min-width: 40px !important;
-    max-width: 72% !important;
+    max-width: none !important;
     font-size: 13px !important;
     padding: 6px 8px !important;
     order: 2 !important;
   }
-  .top-controls #startBtn,
-  .top-controls #giveUpBtn {
+  .top-controls #startBtn,.top-controls #giveUpBtn {
     flex: 0 1 auto !important;
     font-size: 11px !important;
     padding: 6px 8px !important;
     white-space: nowrap !important;
     order: 3 !important;
   }
-
   .meta-center {
     display: none !important;
   }
@@ -74,26 +72,21 @@
     border: 1px solid var(--border) !important;
     margin: 4px 0 !important;
   }
-  .meta-left {
+  .meta-left,.meta-right {
     display: flex !important;
     align-items: baseline !important;
     gap: 4px !important;
-    justify-content: flex-start !important;
     white-space: nowrap !important;
     min-width: 0 !important;
     overflow: hidden !important;
+  }
+  .meta-left {
+    justify-content: flex-start !important;
   }
   .meta-right {
-    display: flex !important;
-    align-items: baseline !important;
-    gap: 4px !important;
     justify-content: flex-end !important;
-    white-space: nowrap !important;
-    min-width: 0 !important;
-    overflow: hidden !important;
   }
-  .meta-left .label,
-  .meta-right .label {
+  .meta-left .label,.meta-right .label {
     font-size: 10px !important;
     color: var(--text-muted) !important;
     text-transform: uppercase !important;
@@ -110,6 +103,7 @@
     font-size: 20px !important;
     color: var(--green) !important;
   }
+
   #timerDisplay {
     font-size: 16px !important;
     font-weight: 600 !important;
@@ -155,7 +149,6 @@
     margin: 0 !important;
     padding: 0 !important;
   }
-
   .table-cell {
     padding: 6px 8px !important;
     font-size: 12px !important;
@@ -170,7 +163,14 @@
     min-height: 36px !important;
   }
   .table-cell.hidden {
-    font-size: 14px !important;
+    font-size: 0 !important;
+    color: transparent !important;
+  }
+  .table-cell.hidden::before,
+  .table-cell.hidden .placeholder,
+  .table-cell.hidden .answer-text {
+    display: none !important;
+    content: none !important;
   }
 
   .sticky-bar {
@@ -187,7 +187,6 @@
     font-size: 12px !important;
     padding: 5px 6px !important;
     min-width: 30px !important;
-    max-width: 65% !important;
   }
   .top-controls #startBtn,
   .top-controls #giveUpBtn {
@@ -201,6 +200,7 @@
   .meta-left .count strong {
     font-size: 18px !important;
   }
+
   #timerDisplay {
     font-size: 14px !important;
     padding: 2px 8px !important;
@@ -213,11 +213,13 @@
     ) !important;
     font-size: 11px !important;
   }
+
   .table-cell {
     padding: 4px 6px !important;
     font-size: 11px !important;
     min-height: 28px !important;
   }
+
   .table-cell.header-cell {
     font-size: 11px !important;
     padding: 6px 4px !important;
