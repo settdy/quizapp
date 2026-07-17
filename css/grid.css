@@ -1,0 +1,134 @@
+#cols {
+  margin-top: 0;
+  flex: 1;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.quiz-table {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 1), 1fr);
+  gap: 2px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--border);
+  min-width: 600px;
+}
+
+.table-row {
+  display: contents;
+}
+
+.table-cell {
+  background: var(--bg-card);
+  padding: 10px 12px;
+  font-size: 15px;
+  line-height: 1.5;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: background 0.2s;
+  word-break: break-word;
+  position: relative;
+}
+
+.header-cell {
+  background: var(--surface1);
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-primary);
+  padding: 12px 14px;
+  border-bottom: 2px solid var(--border);
+  min-height: 50px;
+}
+
+.table-cell.hidden {
+  color: var(--overlay0);
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+.table-cell.hidden::before {
+  content: "▢";
+  opacity: 0.5;
+  font-size: 22px;
+}
+.table-cell.hidden .answer-text {
+  display: none;
+}
+
+.table-cell.matched {
+  color: var(--text-primary);
+  background: var(--bg-card);
+  font-size: 16px;
+  font-weight: 500;
+}
+.table-cell.matched .placeholder {
+  display: none;
+}
+.table-cell.matched .answer-text {
+  display: inline;
+}
+
+.table-cell.just-matched {
+  animation: matchPop 0.3s ease;
+}
+
+@keyframes matchPop {
+  0% {
+    transform: scale(0.92);
+    background: var(--surface2);
+  }
+  50% {
+    transform: scale(1.06);
+    background: var(--surface2);
+  }
+  100% {
+    transform: scale(1);
+    background: var(--bg-card);
+  }
+}
+
+/* ── missed state (revealed in red, no animation) ── */
+.table-cell.missed {
+  color: var(--red);
+  background: var(--bg-card);
+  font-size: 16px;
+  font-weight: 500;
+}
+.table-cell.missed .placeholder {
+  display: none;
+}
+.table-cell.missed .answer-text {
+  display: inline;
+}
+
+.table-cell.empty {
+  background: var(--bg);
+  opacity: 0.3;
+  min-height: 44px;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+.empty-state strong {
+  color: var(--text-secondary);
+}
+.empty-state code {
+  background: var(--surface1);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 14px;
+}

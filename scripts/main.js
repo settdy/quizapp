@@ -62,10 +62,22 @@ function renderGrid() {
   wrap.style.setProperty("--cols", colCount);
 
   let html = '<div class="quiz-table">';
-
   html += '<div class="table-row">';
-  for (const col of parsedColumns) {
-    html += `<div class="table-cell header-cell">${escHtml(col.title)}</div>`;
+  for (let col = 0; col < colCount; col++) {
+    const colData = parsedColumns[col];
+    const items = colData.items;
+    let foundInColumn = 0;
+    for (let row = 0; row < items.length; row++) {
+      const id = `col-${col}-row-${row}`;
+      if (found.has(id)) foundInColumn++;
+    }
+
+    const totalInColumn = items.length;
+    const displayTitle =
+      totalInColumn > 0
+        ? `${colData.title} (${foundInColumn}/${totalInColumn})`
+        : colData.title;
+    html += `<div class="table-cell header-cell">${escHtml(displayTitle)}</div>`;
   }
   html += "</div>";
 

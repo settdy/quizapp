@@ -1,0 +1,116 @@
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  background: var(--surface0);
+  padding: 8px 16px;
+  border-radius: 12px;
+  /* removed border to avoid looking like a progress bar */
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.meta-left {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.meta-left .label {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.meta-left .count {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.meta-left .count strong {
+  font-size: 26px;
+  color: var(--green);
+}
+
+.meta-center {
+  flex: 1;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--green);
+  min-height: 24px;
+}
+.meta-center.done {
+  color: var(--green);
+}
+
+.meta-right {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.meta-right .label {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+#timerDisplay {
+  font-variant-numeric: tabular-nums;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--surface1);
+  padding: 2px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: var(--surface1);
+  border-radius: 999px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+.progress-track .bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(
+    90deg,
+    var(--progress-start),
+    var(--progress-end)
+  );
+  border-radius: 999px;
+  transition: width 0.25s ease;
+}
+
+@media (max-width: 600px) {
+  .meta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding: 10px 12px;
+  }
+  .meta-left,
+  .meta-right {
+    justify-content: center;
+  }
+  .meta-center {
+    order: 3;
+  }
+  .meta-left .count {
+    font-size: 20px;
+  }
+  .meta-left .count strong {
+    font-size: 22px;
+  }
+  #timerDisplay {
+    font-size: 18px;
+  }
+}

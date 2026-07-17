@@ -4,12 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Typing Quiz</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/topbar.css" />
+    <link rel="stylesheet" href="css/timer.css" />
+    <link rel="stylesheet" href="css/play.css" />
+    <link rel="stylesheet" href="css/grid.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
   </head>
   <body>
     <div class="sticky-bar">
       <header>
-        <h1>⌨️ Typing Quiz</h1>
+        <h1>🤖 Typing Quiz</h1>
         <div class="top-controls">
           <select id="q"></select>
           <input
@@ -25,9 +30,15 @@
       </header>
 
       <div class="meta">
-        <span id="p"><strong>0</strong> / 0</span>
-        <span id="timerDisplay">⏱ 00:00</span>
-        <span id="feedback"></span>
+        <div class="meta-left">
+          <span class="label"></span>
+          <span class="count" id="p"><strong>0</strong> / 0</span>
+        </div>
+        <div class="meta-center" id="feedback"></div>
+        <div class="meta-right">
+          <span class="label"></span>
+          <span id="timerDisplay">⏱ 00:00</span>
+        </div>
       </div>
       <div class="progress-track"><div class="bar" id="progressBar"></div></div>
     </div>

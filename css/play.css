@@ -1,0 +1,96 @@
+select,
+button,
+input {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 15px;
+  font-family: inherit;
+  background: var(--bg-input);
+  color: var(--text-primary);
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+select:focus,
+input:focus,
+button:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(137, 180, 250, 0.2);
+}
+select {
+  cursor: pointer;
+  padding-right: 32px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236c7086' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  min-width: 160px;
+}
+select option {
+  background: var(--bg);
+}
+input {
+  min-width: 220px;
+  flex: 1 1 200px;
+}
+input::placeholder {
+  color: var(--text-muted);
+}
+input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+button {
+  background: var(--surface1);
+  cursor: pointer;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-color: var(--border);
+}
+button:hover:not(:disabled) {
+  background: var(--surface2);
+  border-color: var(--overlay0);
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#startBtn {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--crust);
+  font-weight: 600;
+}
+#startBtn:hover:not(:disabled) {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+#startBtn:disabled {
+  opacity: 0.6;
+}
+
+#giveUpBtn {
+  background: var(--surface1);
+  border-color: var(--red);
+  color: var(--red);
+}
+#giveUpBtn:hover:not(:disabled) {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--crust);
+}
+#giveUpBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: var(--border);
+  color: var(--text-muted);
+  background: var(--surface1);
+}
+#giveUpBtn:disabled:hover {
+  background: var(--surface1);
+  border-color: var(--border);
+  color: var(--text-muted);
+}

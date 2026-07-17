@@ -1,0 +1,94 @@
+@media (max-width: 768px) {
+  body {
+    padding: 16px 12px;
+  }
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .top-controls {
+    margin-left: 0;
+    flex-wrap: wrap;
+  }
+  .top-controls select {
+    flex: 1 1 100%;
+    min-width: unset;
+  }
+  .top-controls input {
+    min-width: unset;
+    flex: 1 1 60%;
+  }
+  .top-controls button {
+    flex: 0 1 auto;
+  }
+  .quiz-table {
+    min-width: 500px;
+  }
+  .table-cell {
+    padding: 8px 10px;
+    font-size: 13px;
+    min-height: 36px;
+  }
+  .header-cell {
+    font-size: 14px;
+    padding: 10px 10px;
+    min-height: 42px;
+  }
+  .table-cell.hidden {
+    font-size: 16px;
+  }
+  .table-cell.hidden::before {
+    font-size: 18px;
+  }
+  .table-cell.matched {
+    font-size: 14px;
+  }
+  .table-cell.missed {
+    font-size: 14px;
+  }
+  .sticky-bar {
+    padding-bottom: 4px;
+  }
+  .meta {
+    gap: 6px 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .quiz-table {
+    min-width: 400px;
+  }
+  .table-cell {
+    padding: 6px 8px;
+    font-size: 12px;
+    min-height: 32px;
+  }
+  .header-cell {
+    font-size: 12px;
+    padding: 8px 8px;
+    min-height: 36px;
+  }
+  .table-cell.hidden {
+    font-size: 14px;
+  }
+  .table-cell.hidden::before {
+    font-size: 16px;
+  }
+  .table-cell.matched {
+    font-size: 13px;
+  }
+  .table-cell.missed {
+    font-size: 13px;
+  }
+  header h1 {
+    font-size: 18px;
+  }
+  select,
+  button,
+  input {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+}

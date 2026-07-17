@@ -1,0 +1,87 @@
+:root {
+  --rosewater: #f5e0dc;
+  --flamingo: #f2cdcd;
+  --pink: #f5c2e7;
+  --mauve: #cba6f7;
+  --red: #f38ba8;
+  --maroon: #eba0ac;
+  --peach: #fab387;
+  --yellow: #f9e2af;
+  --green: #a6e3a1;
+  --teal: #94e2d5;
+  --sky: #89dceb;
+  --sapphire: #74c7ec;
+  --blue: #89b4fa;
+  --lavender: #b4befe;
+  --text: #cdd6f4;
+  --subtext1: #bac2de;
+  --subtext0: #a6adc8;
+  --overlay2: #9399b2;
+  --overlay1: #7f849c;
+  --overlay0: #6c7086;
+  --surface2: #585b70;
+  --surface1: #45475a;
+  --surface0: #313244;
+  --base: #1e1e2e;
+  --mantle: #181825;
+  --crust: #11111b;
+
+  --bg: var(--base);
+  --bg-card: var(--surface0);
+  --bg-input: var(--surface0);
+  --border: var(--surface1);
+  --text-primary: var(--text);
+  --text-secondary: var(--subtext0);
+  --text-muted: var(--overlay1);
+  --accent: var(--blue);
+  --accent-hover: var(--sapphire);
+  --success: var(--green);
+  --danger: var(--red);
+  --progress-start: var(--blue);
+  --progress-end: var(--mauve);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  padding: 24px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.meta {
+  font-size: 18px; 
+  gap: 16px 24px;
+}
+.meta strong {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+#timerDisplay {
+  font-size: 20px;
+  padding: 4px 18px;
+  border-radius: 24px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+#feedback {
+  font-size: 18px;
+  min-height: 30px;
+}
