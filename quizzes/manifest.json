@@ -1,7 +1,10 @@
-{ "files": [
-    "deltarune-complete-ost.json",
-    "deltarune-items.json",
+{
+  "files": [
+    "brawlers.json",
+    "coc-buildings.json",
+    "coc-troops.json",
     "extreme-demon.json",
-    "brawlers.json"
-    ]
+    "deltarune-complete-ost.json",
+    "deltarune-items.json"
+  ]
 }
