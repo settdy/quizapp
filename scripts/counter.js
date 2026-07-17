@@ -1,7 +1,3 @@
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//  counter.js – Update progress counter and progress bar
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 const progressText = document.getElementById("p");
 const progressBar = document.getElementById("progressBar");
 const feedback = document.getElementById("feedback");
@@ -26,5 +22,4 @@ function updateCounter() {
   }
 }
 
-// Expose for other modules to call
 window.counter = { updateCounter };

@@ -1,7 +1,3 @@
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//  timer.js – Start/Stop/Reset timer, UI controls
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 let timerInterval = null;
 let startTime = null;
 let isTimerRunning = false;
