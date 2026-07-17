@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Typing Quiz · Catppuccin</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ── Sticky top bar ── -->
+    <div class="sticky-bar">
+      <header>
+        <h1>⌨️ Typing Quiz</h1>
+        <div class="top-controls">
+          <select id="q"></select>
+          <input
+            id="i"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="Type answer …"
+            disabled
+          />
+          <button id="startBtn" type="button">▶ Start Quiz</button>
+          <button id="giveUpBtn" type="button" disabled>✋ Give Up</button>
+        </div>
+      </header>
+
+      <div class="meta">
+        <span id="p"><strong>0</strong> / 0</span>
+        <span id="timerDisplay">⏱ 00:00</span>
+        <span id="feedback"></span>
+      </div>
+      <div class="progress-track"><div class="bar" id="progressBar"></div></div>
+    </div>
+
+    <!-- ── Quiz grid ── -->
+    <div id="cols"></div>
+
+    <script src="scripts/match.js"></script>
+    <script src="scripts/timer.js"></script>
+    <script src="scripts/counter.js"></script>
+    <script src="scripts/main.js"></script>
+  </body>
+</html>

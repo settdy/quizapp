@@ -1,0 +1,433 @@
+/* ── Catppuccin Mocha palette ── */
+:root {
+    --rosewater: #f5e0dc;
+    --flamingo: #f2cdcd;
+    --pink: #f5c2e7;
+    --mauve: #cba6f7;
+    --red: #f38ba8;
+    --maroon: #eba0ac;
+    --peach: #fab387;
+    --yellow: #f9e2af;
+    --green: #a6e3a1;
+    --teal: #94e2d5;
+    --sky: #89dceb;
+    --sapphire: #74c7ec;
+    --blue: #89b4fa;
+    --lavender: #b4befe;
+    --text: #cdd6f4;
+    --subtext1: #bac2de;
+    --subtext0: #a6adc8;
+    --overlay2: #9399b2;
+    --overlay1: #7f849c;
+    --overlay0: #6c7086;
+    --surface2: #585b70;
+    --surface1: #45475a;
+    --surface0: #313244;
+    --base: #1e1e2e;
+    --mantle: #181825;
+    --crust: #11111b;
+
+    --bg: var(--base);
+    --bg-card: var(--surface0);
+    --bg-input: var(--surface0);
+    --border: var(--surface1);
+    --text-primary: var(--text);
+    --text-secondary: var(--subtext0);
+    --text-muted: var(--overlay1);
+    --accent: var(--blue);
+    --accent-hover: var(--sapphire);
+    --success: var(--green);
+    --danger: var(--red);
+    --progress-start: var(--blue);
+    --progress-end: var(--mauve);
+}
+
+/* ── reset & base ── */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    padding: 24px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Sticky top bar ── */
+.sticky-bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
+}
+
+.sticky-bar::after {
+    content: '';
+    display: block;
+    height: 4px;
+    background: linear-gradient(to bottom, var(--surface0), transparent);
+    opacity: 0.3;
+    margin-top: 8px;
+    margin-bottom: -12px;
+}
+
+/* ── header ── */
+header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 18px;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+}
+header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    background: linear-gradient(135deg, var(--blue), var(--mauve));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+}
+.top-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+/* ── form elements ── */
+select, button, input {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: inherit;
+    background: var(--bg-input);
+    color: var(--text-primary);
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+select:focus, input:focus, button:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(137, 180, 250, 0.2);
+}
+select {
+    cursor: pointer;
+    padding-right: 32px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236c7086' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    min-width: 160px;
+}
+select option { background: var(--bg); }
+input {
+    min-width: 220px;
+    flex: 1 1 200px;
+}
+input::placeholder { color: var(--text-muted); }
+input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+button {
+    background: var(--surface1);
+    cursor: pointer;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-color: var(--border);
+}
+button:hover:not(:disabled) {
+    background: var(--surface2);
+    border-color: var(--overlay0);
+}
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ── Start button specific ── */
+#startBtn {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--crust);
+    font-weight: 600;
+}
+#startBtn:hover:not(:disabled) {
+    background: var(--teal);
+    border-color: var(--teal);
+}
+#startBtn:disabled {
+    opacity: 0.6;
+}
+
+/* ── Give Up button ── */
+#giveUpBtn {
+    background: var(--surface1);
+    border-color: var(--red);
+    color: var(--red);
+}
+#giveUpBtn:hover:not(:disabled) {
+    background: var(--red);
+    border-color: var(--red);
+    color: var(--crust);
+}
+
+/* ── meta / progress ── */
+.meta {
+    color: var(--text-secondary);
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 20px;
+    margin-top: 6px;
+    margin-bottom: 4px;
+}
+.meta strong { color: var(--text-primary); font-weight: 600; }
+#feedback {
+    min-height: 24px;
+    font-weight: 500;
+    color: var(--green);
+}
+#feedback.done { color: var(--green); }
+
+/* ── Timer display ── */
+#timerDisplay {
+    font-variant-numeric: tabular-nums;
+    background: var(--surface1);
+    padding: 2px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+/* ── progress bar ── */
+.progress-track {
+    width: 100%;
+    height: 6px;
+    background: var(--surface1);
+    border-radius: 999px;
+    margin: 4px 0 6px 0;
+    overflow: hidden;
+}
+.progress-track .bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--progress-start), var(--progress-end));
+    border-radius: 999px;
+    transition: width 0.25s ease;
+}
+
+/* ── table / grid layout ── */
+#cols {
+    margin-top: 0;
+    flex: 1;
+    overflow-x: auto;
+    padding-top: 4px;
+}
+
+.quiz-table {
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 1), 1fr);
+    gap: 2px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--border);
+    min-width: 600px;
+}
+
+.table-row {
+    display: contents;
+}
+
+.table-cell {
+    background: var(--bg-card);
+    padding: 8px 10px;
+    font-size: 13px;
+    line-height: 1.4;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: background 0.2s;
+    word-break: break-word;
+    position: relative;
+}
+
+.header-cell {
+    background: var(--surface1);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    padding: 10px 10px;
+    border-bottom: 2px solid var(--border);
+}
+
+/* ── hidden state (placeholder) ── */
+.table-cell.hidden {
+    color: var(--overlay0);
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+.table-cell.hidden::before {
+    content: "▢";
+    opacity: 0.5;
+}
+.table-cell.hidden .answer-text {
+    display: none;
+}
+
+/* ── matched state (revealed, NO animation) ── */
+.table-cell.matched {
+    color: var(--text-primary);
+    background: var(--bg-card);
+}
+.table-cell.matched .placeholder {
+    display: none;
+}
+.table-cell.matched .answer-text {
+    display: inline;
+}
+
+/* ── ONLY the latest match gets the animation ── */
+.table-cell.just-matched {
+    animation: matchPop 0.3s ease;
+}
+
+@keyframes matchPop {
+    0% { transform: scale(0.92); background: var(--surface2); }
+    50% { transform: scale(1.06); background: var(--surface2); }
+    100% { transform: scale(1); background: var(--bg-card); }
+}
+
+/* ── missed state (revealed in red, no animation) ── */
+.table-cell.missed {
+    color: var(--red);
+    background: var(--bg-card);
+}
+.table-cell.missed .placeholder {
+    display: none;
+}
+.table-cell.missed .answer-text {
+    display: inline;
+}
+
+/* ── empty cell filler ── */
+.table-cell.empty {
+    background: var(--bg);
+    opacity: 0.3;
+    min-height: 36px;
+}
+
+/* ── empty state ── */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--text-muted);
+    font-size: 15px;
+}
+.empty-state strong { color: var(--text-secondary); }
+.empty-state code {
+    background: var(--surface1);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* ── responsive ── */
+@media (max-width: 768px) {
+    body { padding: 16px 12px; }
+    header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    .top-controls {
+        margin-left: 0;
+        flex-wrap: wrap;
+    }
+    .top-controls select {
+        flex: 1 1 100%;
+        min-width: unset;
+    }
+    .top-controls input {
+        min-width: unset;
+        flex: 1 1 60%;
+    }
+    .top-controls button {
+        flex: 0 1 auto;
+    }
+    .quiz-table {
+        min-width: 400px;
+        font-size: 12px;
+    }
+    .table-cell {
+        padding: 6px 8px;
+        font-size: 12px;
+        min-height: 32px;
+    }
+    .table-cell.hidden {
+        font-size: 14px;
+    }
+    .sticky-bar {
+        padding-bottom: 4px;
+    }
+    .meta {
+        gap: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .quiz-table {
+        min-width: 300px;
+        font-size: 11px;
+    }
+    .table-cell {
+        padding: 4px 6px;
+        font-size: 11px;
+        min-height: 28px;
+    }
+    header h1 {
+        font-size: 18px;
+    }
+    select, button, input {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+}
+/* ── Give Up button (disabled state) ── */
+#giveUpBtn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: var(--border);
+    color: var(--text-muted);
+    background: var(--surface1);
+}
+#giveUpBtn:disabled:hover {
+    background: var(--surface1);
+    border-color: var(--border);
+    color: var(--text-muted);
+}
