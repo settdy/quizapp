@@ -87,7 +87,7 @@
         "JANET",
         "OTIS",
         "BUSTER",
-        "GRAY",
+        {"answer": "GRAY", "aliases": ["GREY"]},
         "R-T",
         "WILLOW",
         "DOUG",

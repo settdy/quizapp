@@ -3,8 +3,9 @@
     "brawlers.json",
     "coc-buildings.json",
     "coc-troops.json",
-    "extreme-demon.json",
     "deltarune-complete-ost.json",
-    "deltarune-items.json"
+    "deltarune-items.json",
+    "deltarune-npcs.json",
+    "extreme-demon.json"
   ]
 }
